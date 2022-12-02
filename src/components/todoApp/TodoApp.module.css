@@ -1,0 +1,16 @@
+.bg {
+    background-color: #484A5E;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.app {
+    width: 400px;
+    height: 430px;
+    display: flex;
+    background-color: #F1842F;
+    flex-direction: column;
+}

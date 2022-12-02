@@ -1,0 +1,19 @@
+.main {
+    width: 100%;
+    padding: 0 3px;
+    height: 60%;
+}
+
+.todos {}
+
+.todo {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.checkbox {}
+
+.label {}
+
+.trash {}
