@@ -7,12 +7,12 @@ const TodoList = (props) => {
         <main className={styles.main}>
             <ul className={styles.todos}>
                 <li className={styles.todo}>
-                    <div>
+                    <div className={styles.checkboxContainer}>
                         <input className={styles.checkbox} type="checkbox" id="horns" name="horns" />
                         <label className={styles.label} for="horns">공부하기</label>
                     </div>
-                    <div className='trash'>
-                        <BsTrash2 className='trash-icon' />
+                    <div className={styles.trash}>
+                        <BsTrash2 className={styles.trashIcon} />
                     </div>
                 </li>
             </ul>
