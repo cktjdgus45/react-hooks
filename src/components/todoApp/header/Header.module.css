@@ -7,7 +7,7 @@
     padding: 5px;
     width: 100%;
     height: 20%;
-    border-radius: 10px 10px 0 0;
+    border-radius: 20px 20px 0 0;
 }
 
 .navbar {
@@ -22,9 +22,14 @@
     display: block;
     height: 100%;
     margin-left: 7px;
+    cursor: pointer;
 }
 
-.navItem::after {
+.navItem:hover {
+    opacity: 0.8;
+}
+
+.selected+.navItem::after {
     content: '';
     width: 100%;
     height: 1px;

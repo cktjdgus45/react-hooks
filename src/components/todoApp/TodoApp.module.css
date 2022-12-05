@@ -11,6 +11,5 @@
     width: 400px;
     height: 430px;
     display: flex;
-    background-color: #1E293B;
     flex-direction: column;
 }
