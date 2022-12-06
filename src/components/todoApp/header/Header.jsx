@@ -4,7 +4,7 @@ import { BsSunFill } from 'react-icons/bs'
 
 
 
-const Header = () => {
+const Header = ({ todoHandler }) => {
     return (
         <header className={styles.header}>
             <BsSunFill className={styles.theme} />

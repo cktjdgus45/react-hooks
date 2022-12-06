@@ -4,13 +4,13 @@ import Header from './header/Header';
 import TodoList from './main/TodoList';
 import styles from './TodoApp.module.css';
 
-const TodoApp = () => {
+const TodoApp = ({ todoHandler }) => {
     return (
         <div className={styles.bg}>
             <section className={styles.app}>
-                <Header />
-                <TodoList />
-                <Footer />
+                <Header todoHandler={todoHandler} />
+                <TodoList todoHandler={todoHandler} />
+                <Footer todoHandler={todoHandler} />
             </section>
         </div>
     )
