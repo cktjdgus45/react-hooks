@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import styles from './Footer.module.css';
 
-const Footer = ({ todoHandler }) => {
+const Footer = ({ todoHandler, setTodos }) => {
     const [todo, setTodo] = useState("");
     const onSubmit = (e) => {
         e.preventDefault();
         todoHandler.todo = todo;
+        setTodos(prev => [...prev, todoHandler.todo]);
         setTodo('');
     }
     return (

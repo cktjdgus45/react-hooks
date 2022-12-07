@@ -1,24 +1,28 @@
 import React from 'react';
 import styles from './TodoList.module.css';
 import { BsTrash2 } from 'react-icons/bs';
-import { useState } from 'react';
 
-const TodoList = ({ todoHandler }) => {
+const TodoList = ({ todoHandler, todos }) => {
+    const checkState = (e) => {
+        const li = e.target.parentNode.parentElement;
+        const isChecked = e.target.checked;
+        todoHandler.updateTodo(isChecked, li.id);
+    }
     return (
         <main className={styles.main}>
-            {todoHandler.todos.map(todo => (
-                <ul className={styles.todos}>
-                    <li className={styles.todo}>
+            <ul className={styles.todos}>
+                {todos.map(todo => (
+                    <li id={todo.id} key={todo.id} className={styles.todo}>
                         <div className={styles.checkboxContainer}>
-                            <input className={styles.checkbox} type="checkbox" id="horns" name="horns" />
+                            <input onChange={checkState} className={styles.checkbox} type="checkbox" id="horns" name="horns" />
                             <label className={styles.label} htmlFor="horns">{todo.todo}</label>
                         </div>
                         <div className={styles.trash}>
                             <BsTrash2 className={styles.trashIcon} />
                         </div>
                     </li>
-                </ul>
-            ))}
+                ))}
+            </ul>
         </main>
     )
 }
