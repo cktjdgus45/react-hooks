@@ -29,7 +29,6 @@ class TodoHandler {
     get todo() {
         return this.#todo;
     }
-    //12/8 목 delete완성 git commit 하기.
     deleteTodo(todoState, checkedId) {
         if (todoState === "active") {
             return;

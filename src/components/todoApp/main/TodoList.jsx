@@ -11,7 +11,6 @@ const TodoList = ({ todoHandler, todos }) => {
     const onDelete = (e) => {
         e.preventDefault();
         const li = e.target.parentNode.parentElement;
-        console.log(li.id)
         const todoState = li.dataset.state;
         todoHandler.deleteTodo(todoState, li.id);
     }
