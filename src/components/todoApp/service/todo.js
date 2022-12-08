@@ -12,6 +12,7 @@ class TodoHandler {
         isChecked ?
             todo['state'] = "completed" :
             todo['state'] = "active";
+        this.#updater(prev => [...prev]);
     }
     set todo(todo) {
         this.#todo = { ...this.#todo, todo, id: this.#todos.length };
@@ -28,8 +29,13 @@ class TodoHandler {
     get todo() {
         return this.#todo;
     }
-    deleteTodo(checkedId) {
-        this.#todos = [...this.#todos.filter(todo => todo.id !== checkedId)];
+    //12/8 목 delete완성 git commit 하기.
+    deleteTodo(todoState, checkedId) {
+        if (todoState === "active") {
+            return;
+        }
+        this.#todos = [...this.#todos.filter(todo => todo.id !== parseInt(checkedId))];
+        this.#updater(this.#todos);
     }
     filterTodo(navState) {
         return this.#todos.filter(todo => todo.state === navState);
