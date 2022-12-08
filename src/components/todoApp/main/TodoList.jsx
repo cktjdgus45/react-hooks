@@ -4,6 +4,7 @@ import { BsTrash2 } from 'react-icons/bs';
 
 const TodoList = ({ todoHandler, todos }) => {
     const checkState = (e) => {
+        e.preventDefault();
         const li = e.target.parentNode.parentElement;
         const isChecked = e.target.checked;
         todoHandler.updateTodo(isChecked, li.id);

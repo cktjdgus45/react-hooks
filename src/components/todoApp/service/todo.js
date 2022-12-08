@@ -3,7 +3,7 @@ class TodoHandler {
     #todo = {
         state: "active" || "completed",
         todo: "",
-        id: 0
+        id: 0,
     }
     #updater;
 
@@ -12,10 +12,9 @@ class TodoHandler {
         isChecked ?
             todo['state'] = "completed" :
             todo['state'] = "active";
-        this.#updater(prev => [...prev]);
     }
     set todo(todo) {
-        this.#todo = { ...this.#todo, todo, id: this.#todos.length };
+        this.#todo = { state: "active", todo, id: this.#todos.length };
         this.#todos.push(this.#todo);
     }
 
@@ -37,7 +36,12 @@ class TodoHandler {
         this.#updater(this.#todos);
     }
     filterTodo(navState) {
-        return this.#todos.filter(todo => todo.state === navState);
+        if (navState) {
+            const result = this.#todos.filter(todo => todo.state === navState);
+            return result;
+        } else {
+            return this.#todos;
+        }
     }
 }
 

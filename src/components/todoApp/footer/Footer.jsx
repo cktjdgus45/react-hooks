@@ -6,7 +6,10 @@ const Footer = ({ todoHandler, setTodos }) => {
     const onSubmit = (e) => {
         e.preventDefault();
         todoHandler.todo = todo;
-        setTodos(prev => [...prev, todoHandler.todo]);
+        setTodos(prev => {
+            console.log(prev);
+            return [...prev, todoHandler.todo];
+        })
         setTodo('');
     }
     return (

@@ -12,7 +12,7 @@ const TodoApp = ({ todoHandler }) => {
     return (
         <div className={styles.bg}>
             <section className={styles.app}>
-                <Header todoHandler={todoHandler} />
+                <Header todoHandler={todoHandler} setTodos={setTodos} />
                 <TodoList todoHandler={todoHandler} todos={todos} />
                 <Footer todoHandler={todoHandler} setTodos={setTodos} />
             </section>
