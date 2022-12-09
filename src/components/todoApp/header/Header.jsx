@@ -14,6 +14,8 @@ const Header = ({ todoHandler, setTodos }) => {
             return;
         }
         setClicked(nav);
+        // 여기가 버그원인이였음. input enter했을떄 연속으로 2개 생기는
+        // 얕은 복사. footer의 prev에 영향.
         setTodos([...todoHandler.filterTodo(nav.dataset.state)]);
     }
     return (

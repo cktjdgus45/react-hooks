@@ -21,7 +21,7 @@ const TodoList = ({ todoHandler, todos }) => {
                 {todos.map(todo => (
                     <li id={todo.id} data-state={todo.state} key={todo.id} className={styles.todo}>
                         <div className={styles.checkboxContainer}>
-                            <input onChange={checkState} className={styles.checkbox} type="checkbox" id="horns" name="horns" />
+                            <input defaultChecked={todo['state'] === "active" ? false : true} onChange={checkState} className={styles.checkbox} type="checkbox" id="horns" name="horns" />
                             <label className={styles.label} htmlFor="horns">{todo.todo}</label>
                         </div>
                         <div onClick={onDelete} className={styles.trash}>
