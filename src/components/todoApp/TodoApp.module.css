@@ -7,6 +7,10 @@
     align-items: center;
 }
 
+.light.bg {
+    background-color: black;
+}
+
 .app {
     width: 400px;
     height: 430px;

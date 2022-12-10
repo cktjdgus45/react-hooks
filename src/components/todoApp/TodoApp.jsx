@@ -7,12 +7,13 @@ import styles from './TodoApp.module.css';
 
 const TodoApp = ({ todoHandler }) => {
     const [todos, setTodos] = useState([]);
+    const [darkTheme, setDarkTheme] = useState(false);
+    console.log(darkTheme);
     todoHandler.setState = setTodos;
-    console.log(todos);
     return (
-        <div className={styles.bg}>
+        <div className={`${styles.light} ${styles.bg}`}>
             <section className={styles.app}>
-                <Header todoHandler={todoHandler} setTodos={setTodos} />
+                <Header todoHandler={todoHandler} setTodos={setTodos} darkTheme={darkTheme} setDarkTheme={setDarkTheme} />
                 <TodoList todoHandler={todoHandler} todos={todos} />
                 <Footer todoHandler={todoHandler} setTodos={setTodos} />
             </section>
