@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Footer.module.css';
 
-const Footer = ({ todoHandler, setTodos }) => {
+const Footer = ({ todoHandler, setTodos, darkTheme }) => {
     const [todo, setTodo] = useState("");
     const onSubmit = (e) => {
         e.preventDefault();
@@ -13,10 +13,10 @@ const Footer = ({ todoHandler, setTodos }) => {
         setTodo('');
     }
     return (
-        <footer className={styles.footer}>
-            <form className={styles.form} onSubmit={onSubmit}>
+        <footer className={darkTheme ? `${styles.dark} ${styles.footer}` : `${styles.footer}`}>
+            <form className={darkTheme ? `${styles.dark} ${styles.form}` : `${styles.form}`} onSubmit={onSubmit}>
                 <input value={todo} onChange={e => setTodo(e.target.value)} type="text" placeholder='Add Todo' className={styles.input} />
-                <button type='submit' className={styles.button}>Add</button>
+                <button type='submit' className={darkTheme ? `${styles.dark} ${styles.button}` : `${styles.button}`}>Add</button>
             </form>
         </footer>
     )

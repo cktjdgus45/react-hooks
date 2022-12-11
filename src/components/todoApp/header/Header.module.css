@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #222439;
+    background-color: #F2E5E5;
     font-size: 15px;
     padding: 5px;
     width: 100%;
@@ -10,12 +10,20 @@
     border-radius: 20px 20px 0 0;
 }
 
+.dark.header {
+    background-color: #434242;
+}
+
 .navbar {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    color: #F1842F;
+    color: #CE7777;
     width: 90%;
+}
+
+.dark.navbar {
+    color: #FFFBEB;
 }
 
 .navItem {
@@ -34,12 +42,20 @@
     content: '';
     width: 100%;
     height: 1px;
-    background-color: #fff;
+    background-color: #DC3535;
+}
+
+.dark.selected.navItem::after {
+    background-color: #434242;
 }
 
 .theme {
-    color: #fff;
+    color: #FFFBEB;
     width: 10%;
     font-size: 20px;
     cursor: pointer;
+}
+
+.dark.theme {
+    color: #CE7777;
 }

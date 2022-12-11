@@ -1,5 +1,5 @@
 .bg {
-    background-color: #484A5E;
+    background-color: #FEFCF3;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -7,8 +7,8 @@
     align-items: center;
 }
 
-.light.bg {
-    background-color: black;
+.dark.bg {
+    background-color: #282A3A;
 }
 
 .app {

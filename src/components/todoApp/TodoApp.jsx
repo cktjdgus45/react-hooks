@@ -8,14 +8,13 @@ import styles from './TodoApp.module.css';
 const TodoApp = ({ todoHandler }) => {
     const [todos, setTodos] = useState([]);
     const [darkTheme, setDarkTheme] = useState(false);
-    console.log(darkTheme);
     todoHandler.setState = setTodos;
     return (
-        <div className={`${styles.light} ${styles.bg}`}>
+        <div className={darkTheme ? `${styles.dark} ${styles.bg}` : `${styles.bg}`}>
             <section className={styles.app}>
                 <Header todoHandler={todoHandler} setTodos={setTodos} darkTheme={darkTheme} setDarkTheme={setDarkTheme} />
-                <TodoList todoHandler={todoHandler} todos={todos} />
-                <Footer todoHandler={todoHandler} setTodos={setTodos} />
+                <TodoList todoHandler={todoHandler} todos={todos} darkTheme={darkTheme} />
+                <Footer todoHandler={todoHandler} setTodos={setTodos} darkTheme={darkTheme} />
             </section>
         </div>
     )

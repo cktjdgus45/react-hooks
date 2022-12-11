@@ -21,12 +21,12 @@ const Header = ({ todoHandler, setTodos, setDarkTheme, darkTheme }) => {
         setDarkTheme(prev => !prev);
     }
     return (
-        <header className={styles.header}>
-            {darkTheme ? <BsFillMoonFill onClick={toggleTheme} className={styles.theme} /> : <BsSunFill onClick={toggleTheme} className={styles.theme} />}
-            <ul className={styles.navbar} onClick={onClick}>
-                <li data-state="" className={`${styles.navItem} ${clicked?.textContent === "All" ? styles.selected : ""}`}>All</li>
-                <li data-state="active" className={`${styles.navItem} ${clicked?.textContent === "Active" ? styles.selected : ""}`}>Active</li>
-                <li data-state="completed" className={`${styles.navItem} ${clicked?.textContent === "Completed" ? styles.selected : ""}`}>Completed</li>
+        <header className={darkTheme ? `${styles.dark} ${styles.header}` : `${styles.header}`}>
+            {darkTheme ? <BsFillMoonFill onClick={toggleTheme} className={styles.theme} /> : <BsSunFill onClick={toggleTheme} className={`${styles.dark} ${styles.theme}`} />}
+            <ul className={darkTheme ? `${styles.dark} ${styles.navbar}` : `${styles.navbar}`} onClick={onClick}>
+                <li data-state="" className={darkTheme ? `${styles.navItem} ${clicked?.textContent === "All" ? styles.selected : ""}` : `${styles.navItem} ${clicked?.textContent === "All" ? styles.selected : ""}`}>All</li>
+                <li data-state="active" className={darkTheme ? `${styles.navItem} ${clicked?.textContent === "Active" ? styles.selected : ""}` : `${styles.navItem} ${clicked?.textContent === "Active" ? styles.selected : ""}`}>Active</li>
+                <li data-state="completed" className={darkTheme ? `${styles.navItem} ${clicked?.textContent === "Completed" ? styles.selected : ""}` : `${styles.navItem} ${clicked?.textContent === "Completed" ? styles.selected : ""} ${styles.navItem}`}>Completed</li>
             </ul>
         </header>
     )
