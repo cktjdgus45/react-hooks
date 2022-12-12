@@ -9,7 +9,6 @@ const todoHandler = new TodoHandler();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <TodoApp todoHandler={todoHandler} />
   </React.StrictMode>
 );
 
