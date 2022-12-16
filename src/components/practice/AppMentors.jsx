@@ -1,5 +1,5 @@
 import React, { useReducer, useState } from 'react';
-import { personReducer } from '../reducer/person-reducer';
+import { personReducer } from '../../reducer/person-reducer';
 
 const initialPerson = {
   name: '엘리',
