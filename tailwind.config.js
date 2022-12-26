@@ -7,7 +7,7 @@ module.exports = {
         'customize-grid-col': 'repeat(5, minmax(0, 200px))'
       },
       "gridTemplateRows": {
-        'customize-grid-row': 'repeat(5,minmax(0,250px))'
+        'customize-grid-row': 'repeat(1,minmax(0,1fr))'
       }
     },
   },
