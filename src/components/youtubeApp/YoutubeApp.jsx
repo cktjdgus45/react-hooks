@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './header/Header';
 import Main from './main/Main';
 
+
 const YoutubeApp = () => {
     return (
         <div className='w-screen h-full flex justify-center'>
@@ -13,5 +14,6 @@ const YoutubeApp = () => {
         </div>
     )
 }
+
 
 export default YoutubeApp;
