@@ -8,6 +8,9 @@ module.exports = {
       },
       "gridTemplateRows": {
         'customize-grid-row': 'repeat(1,minmax(0,1fr))'
+      },
+      "height": {
+        'iframe-video-height': '32em'
       }
     },
   },
