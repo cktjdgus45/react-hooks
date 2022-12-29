@@ -1,10 +1,10 @@
 import React from 'react';
 import VideoCard from './videoComponents/VideoCard';
-import VideoDetail from './videoComponents/VideoDetail';
+import { useLocation } from 'react-router-dom';
 
-const Main = (props) => {
+const Main = () => {
     return (
-        <section className='w-full grid justify-center gap-1 p-1 grid-cols-customize-grid-col grid-rows-customize-grid-row'>
+        <section className='w-full grid justify-center gap-1 grid-cols-customize-grid-col grid-rows-customize-grid-row'>
             <VideoCard />
             <VideoCard />
             <VideoCard />
