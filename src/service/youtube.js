@@ -10,11 +10,17 @@ class Youtube {
             redirect: 'follow'
         }
     }
-    mostPopularVideos(maxResultsCount) {
-        return fetch(`${this.#baseUrl}/videos?part=snippet&chart=mostPopular&maxResults=${maxResultsCount}&key=${this.#apiKey}`, this.#requestOptions)
+    async mostPopularVideos(maxResultsCount) {
+        const result = await fetch(`${this.#baseUrl}/videos?part=snippet&chart=mostPopular&maxResults=${maxResultsCount}&key=${this.#apiKey}`, this.#requestOptions)
+            .then(res => res.json());
+        return result;
+
     }
-    search(query, maxResultsCount) {
-        return fetch(`${this.#baseUrl}/search?part=snippet&maxResults=${maxResultsCount}&q=${query}&key=${this.#apiKey}`, this.#requestOptions)
+    async search(query, maxResultsCount) {
+        const result = await fetch(`${this.#baseUrl}/search?part=snippet&maxResults=${maxResultsCount}&q=${query}&key=${this.#apiKey}`, this.#requestOptions)
+            .then(res => res.json());
+        return result;
+
     }
 }
 
