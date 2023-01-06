@@ -8,7 +8,6 @@ import Youtube from '../../service/youtube';
 
 const App = () => {
     const { isLoading, error, data } = useQuery({ queryKey: ['videos'], queryFn: () => new Youtube().mostPopularVideos(25) });
-    console.log(data);
     return (
         <BrowserRouter>
             <div className='w-screen h-full flex justify-center'>
@@ -19,7 +18,7 @@ const App = () => {
                         <div className='w-full h-2 opacity-40 bg-zinc-700 my-1.5'></div>
                         <Routes>
                             <Route path='/' element={<Main videos={data.items} />} />
-                            <Route path='/detail' element={<VideoDetail />} />
+                            <Route path='/detail' element={<VideoDetail videos={data.items} />} />
                         </Routes>
                     </section>
                 )}
