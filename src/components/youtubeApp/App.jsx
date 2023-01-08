@@ -8,6 +8,7 @@ import Youtube from '../../service/youtube';
 
 const App = () => {
     const { isLoading, error, data } = useQuery({ queryKey: ['videos'], queryFn: () => new Youtube().mostPopularVideos(25) });
+
     return (
         <BrowserRouter>
             <div className='w-screen h-full flex justify-center'>

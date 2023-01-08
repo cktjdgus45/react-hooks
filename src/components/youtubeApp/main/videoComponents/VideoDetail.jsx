@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import VideoCard from './VideoCard';
+import { decode } from 'he';
 
 const VideoDetail = ({ videos }) => {
     const location = useLocation();
@@ -17,7 +18,7 @@ const VideoDetail = ({ videos }) => {
                     src={`https://www.youtube.com/embed/${id}`}
                     allowFullScreen />
                 <div className='mt-2.5 text-slate-50'>
-                    <h1 className='text-base'>{title}</h1>
+                    <h1 className='text-base'>{decode(title)}</h1>
                     <h1 className='my-2.5 text-sm'>{channelTitle}</h1>
                     <span className='text-xs'>{description}</span>
                 </div>
