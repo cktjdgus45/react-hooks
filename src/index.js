@@ -9,6 +9,7 @@ import Products from './components/shoppy/main/products/Products';
 import EnrollProduct from './components/shoppy/main/admin/EnrollProduct';
 import Cart from './components/shoppy/main/cart/Cart';
 import ProductDetail from './components/shoppy/main/products/ProductDetail';
+import Header from './components/shoppy/header/Header';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const queryClient = new QueryClient();
@@ -38,8 +39,10 @@ const router = createBrowserRouter([
 
 root.render(
   <QueryClientProvider client={queryClient}>
-    <RouterProvider router={router}></RouterProvider>
-    <App/>
+    <div className='w-[80rem] h-screen bg-slate-500'>
+            <Header/>
+          <RouterProvider router={router}></RouterProvider>
+      </div>
     <ReactQueryDevtools initialIsOpen={true} />
   </QueryClientProvider>
 );
