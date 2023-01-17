@@ -40,9 +40,9 @@ const router = createBrowserRouter([
 root.render(
   <QueryClientProvider client={queryClient}>
     <div className='w-[80rem] h-screen bg-slate-500'>
-            <Header/>
+          <Header/>
           <RouterProvider router={router}></RouterProvider>
-      </div>
+    </div>
     <ReactQueryDevtools initialIsOpen={true} />
   </QueryClientProvider>
 );
