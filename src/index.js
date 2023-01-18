@@ -10,6 +10,7 @@ import EnrollProduct from './components/shoppy/main/admin/EnrollProduct';
 import Cart from './components/shoppy/main/cart/Cart';
 import ProductDetail from './components/shoppy/main/products/ProductDetail';
 import Header from './components/shoppy/header/Header';
+import Home from './components/shoppy/main/home/Home';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const queryClient = new QueryClient();
@@ -17,30 +18,36 @@ const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
     path:'/',
-    element: <App/>
+    element: <App/>,
+    children:[
+      {
+        path:'/',
+        element:<Home/>
+      },
+      {
+        path:'products',
+        element:<Products/>
+      },
+      {
+        path:'admin',
+        element:<EnrollProduct/>
+      },
+      {
+        path:'carts',
+        element:<Cart/>
+      },
+      {
+        path:'products/:productId',
+        element:<ProductDetail/>
+      }
+    ]
   },
-  {
-    path:'products',
-    element:<Products/>
-  },
-  {
-    path:'admin',
-    element:<EnrollProduct/>
-  },
-  {
-    path:'carts',
-    element:<Cart/>
-  },
-  {
-    path:'products/:productId',
-    element:<ProductDetail/>
-  }
 ])
 
 root.render(
+  
   <QueryClientProvider client={queryClient}>
     <div className='w-[80rem] h-screen bg-slate-500'>
-          <Header/>
           <RouterProvider router={router}></RouterProvider>
     </div>
     <ReactQueryDevtools initialIsOpen={true} />
