@@ -6,7 +6,7 @@ const EnrollProduct = () => {
   const {
     register,
     handleSubmit,
-    formState: { isLoading, isSubmitting, isSubmitted },
+    formState: { isSubmitted },
   } = useForm();
   const onSubmit = (data, e) => {
     //fetch cloudinary upload api.

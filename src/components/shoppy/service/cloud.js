@@ -2,10 +2,8 @@ export default class Cloudinary {
   #name = "dp6ovp6ka";
   #unsignedPresetName = "jbzmryry";
   resouceType = "image" | "video" | "raw" | "auto";
-  #baseUrl = `https://api.cloudinary.com/v1_1/${this.#name}/${
-    this.resouceType
-  }/upload`;
-  constructor() {}
+  #baseUrl = `https://api.cloudinary.com/v1_1/${this.#name}/${this.resouceType
+    }/upload`;
   async upload(filesList) {
     const formData = new FormData();
 
