@@ -1,18 +1,20 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from 'firebase/auth';
 
 class Auth {
     #auth = getAuth();
     #provider = new GoogleAuthProvider();
-    login() {
+    login(updater) {
         signInWithPopup(this.#auth, this.#provider)
             .then((result) => {
                 // This gives you a Google Access Token. You can use it to access the Google API.
-                const credential = GoogleAuthProvider.credentialFromResult(result);
-                const token = credential.accessToken;
                 // The signed-in user info.
                 const user = result.user;
-                console.log(token, user);
-                // ...
+                updater(prev => {
+                    return {
+                        ...prev,
+                        user,
+                    }
+                });
             }).catch((error) => {
                 // Handle Errors here.
                 const errorCode = error.code;
@@ -25,8 +27,21 @@ class Auth {
                 // ...
             });
     }
-    logout() {
-
+    logout(updater) {
+        signOut(this.#auth).then(() => {
+            // Sign-out successful.
+            updater({
+                user: {
+                    displayName: "",
+                    photoURL: "",
+                    uid: ''
+                }
+            });
+            console.log('signout successful')
+        }).catch((error) => {
+            // An error happened.
+            console.log(error);
+        });
     }
 }
 

@@ -1,14 +1,15 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import { UserProvider } from '../../context/UserContext';
 import Header from './header/Header';
 
-const App = () =>{
+const App = () => {
     return (
-        <>
-            <Header/>
-            <Outlet/>
-        </>
-        )
+        <UserProvider>
+            <Header />
+            <Outlet />
+        </UserProvider>
+    )
 }
 
 export default App;
