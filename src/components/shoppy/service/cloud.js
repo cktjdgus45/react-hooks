@@ -1,10 +1,8 @@
 export default class Cloudinary {
   #name = "dp6ovp6ka";
   #unsignedPresetName = "jbzmryry";
-  resouceType = "image" | "video" | "raw" | "auto";
-  #baseUrl = `https://api.cloudinary.com/v1_1/${this.#name}/${this.resouceType
-    }/upload`;
-  async upload(filesList) {
+  #baseUrl = `https://api.cloudinary.com/v1_1/${this.#name}/image/upload`;
+  async uploadImage(filesList) {
     const formData = new FormData();
 
     for (let i = 0; i < filesList.length; i++) {
@@ -12,10 +10,14 @@ export default class Cloudinary {
       formData.append("file", file);
       formData.append("upload_preset", this.#unsignedPresetName);
     }
-    const data = await fetch(this.#baseUrl, {
+    const result = await fetch(this.#baseUrl, {
       method: "POST",
       body: formData,
-    });
-    return data.json();
+    })
+      .then(response => response.json())
+      .then(result => {
+        return result.url;
+      });
+    return result;
   }
 }

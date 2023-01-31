@@ -27,10 +27,6 @@ const Header = () => {
     const handleLogout = () => {
         new Auth().logout(setUser);
     }
-    console.log(displayName,
-        photoURL,
-        uid);
-    console.log(user)
     return (
         <header className='w-full items-center h-[50px] flex justify-between'>
             <section className='flex items-center p-1' onClick={() => navigate('/')}>

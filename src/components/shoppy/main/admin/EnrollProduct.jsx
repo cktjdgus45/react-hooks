@@ -8,13 +8,13 @@ const EnrollProduct = () => {
     handleSubmit,
     formState: { isSubmitted },
   } = useForm();
-  const onSubmit = (data, e) => {
+  const onSubmit = async (data) => {
     //fetch cloudinary upload api.
     const { file } = data;
-    const result = new Cloudinary().upload(file);
-    console.log(result);
+    const url = await new Cloudinary().uploadImage(file);
     //firebase DB 추가.
-    console.log(data, e);
+    const product = { ...data, url };
+    console.log(product);
   };
   const onError = (errors, e) => console.log(errors, e);
   return (
@@ -28,6 +28,7 @@ const EnrollProduct = () => {
         <input
           className="w-full border-solid border-2 border-slate-300 p-2 mb-4"
           type="file"
+          accept="image/*"
           {...register("file", { required: true })}
         />
         <input
