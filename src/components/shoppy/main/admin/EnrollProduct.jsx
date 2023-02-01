@@ -1,26 +1,34 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import Cloudinary from "../../service/cloud";
+import { v4 as uuidv4 } from 'uuid';
+import DB from '../../service/firebase/database';
 
 const EnrollProduct = () => {
   const {
     register,
     handleSubmit,
     formState: { isSubmitted },
+    watch
   } = useForm();
   const onSubmit = async (data) => {
     //fetch cloudinary upload api.
-    const { file } = data;
-    const url = await new Cloudinary().uploadImage(file);
+    const url = await new Cloudinary().uploadImage(data.file);
     //firebase DB 추가.
-    const product = { ...data, url };
-    console.log(product);
+    const product = { ...data, url, id: uuidv4() };
+    new DB().create(product);
   };
   const onError = (errors, e) => console.log(errors, e);
+
   return (
     <div className="flex flex-col items-center p-4">
       <h3 className="mb-4 text-2xl">새로운 제품 등록</h3>
       {isSubmitted && <span>성공적으로 제품이 등록되었습니다.</span>}
+      {watch('file') && (
+        <div className='w-52 h-64 mb-7'>
+          <img className='w-full h-full bg-center bg-contain' alt="preview" src={URL.createObjectURL(watch('file')[0])}></img>
+        </div>
+      )}
       <form
         onSubmit={handleSubmit(onSubmit, onError)}
         className="w-full h-full flex flex-col items-center"
