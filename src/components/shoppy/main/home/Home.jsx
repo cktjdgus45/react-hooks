@@ -2,97 +2,22 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import DB from '../../service/firebase/database';
+import Product from './Product';
 
 const Home = () => {
     const [products, setProducts] = useState([]);
     useEffect(() => {
         new DB().read(setProducts);
     }, []);
-    console.log(products)
     return (
-        <main className='w-full bg-slate-400 h-full'>
-            <section className='w-full h-[350px] bg-slate-800 mb-2'>main banner</section>
-            <section className='grid grid-cols-4 grid-rows-[repeat(20,500px)] gap-2 h-full'>
-                <div className='flex flex-col bg-black'>
-                    <img className='basis-10/12 flex bg-slate-900' src="" alt="product" />
-                    <div className='basis-2/12 bg-slate-700'>
-                        <div className='flex justify-between'>
-                            <h3>스웨터</h3>
-                            <h3>￦30000</h3>
-                        </div>
-                        <div>여성</div>
-                    </div>
-                </div>
-                <div className='flex flex-col bg-black'>
-                    <img className='basis-10/12 flex bg-slate-900' src="" alt="product" />
-                    <div className='basis-2/12 bg-slate-700'>
-                        <div className='flex justify-between'>
-                            <h3>스웨터</h3>
-                            <h3>￦30000</h3>
-                        </div>
-                        <div>여성</div>
-                    </div>
-                </div>
-                <div className='flex flex-col bg-black'>
-                    <img className='basis-10/12 flex bg-slate-900' src="" alt="product" />
-                    <div className='basis-2/12 bg-slate-700'>
-                        <div className='flex justify-between'>
-                            <h3>스웨터</h3>
-                            <h3>￦30000</h3>
-                        </div>
-                        <div>여성</div>
-                    </div>
-                </div>
-                <div className='flex flex-col bg-black'>
-                    <img className='basis-10/12 flex bg-slate-900' src="" alt="product" />
-                    <div className='basis-2/12 bg-slate-700'>
-                        <div className='flex justify-between'>
-                            <h3>스웨터</h3>
-                            <h3>￦30000</h3>
-                        </div>
-                        <div>여성</div>
-                    </div>
-                </div>
-                <div className='flex flex-col bg-black'>
-                    <img className='basis-10/12 flex bg-slate-900' src="" alt="product" />
-                    <div className='basis-2/12 bg-slate-700'>
-                        <div className='flex justify-between'>
-                            <h3>스웨터</h3>
-                            <h3>￦30000</h3>
-                        </div>
-                        <div>여성</div>
-                    </div>
-                </div>
-                <div className='flex flex-col bg-black'>
-                    <img className='basis-10/12 flex bg-slate-900' src="" alt="product" />
-                    <div className='basis-2/12 bg-slate-700'>
-                        <div className='flex justify-between'>
-                            <h3>스웨터</h3>
-                            <h3>￦30000</h3>
-                        </div>
-                        <div>여성</div>
-                    </div>
-                </div>
-                <div className='flex flex-col bg-black'>
-                    <img className='basis-10/12 flex bg-slate-900' src="" alt="product" />
-                    <div className='basis-2/12 bg-slate-700'>
-                        <div className='flex justify-between'>
-                            <h3>스웨터</h3>
-                            <h3>￦30000</h3>
-                        </div>
-                        <div>여성</div>
-                    </div>
-                </div>
-                <div className='flex flex-col bg-black'>
-                    <img className='basis-10/12 flex bg-slate-900' src="" alt="product" />
-                    <div className='basis-2/12 bg-slate-700'>
-                        <div className='flex justify-between'>
-                            <h3>스웨터</h3>
-                            <h3>￦30000</h3>
-                        </div>
-                        <div>여성</div>
-                    </div>
-                </div>
+        <main className='w-full h-full'>
+            <section className='w-full h-[350px] mb-2'>
+                <img className='bg-center bg-cover w-full h-full' src="https://images.unsplash.com/photo-1601924994987-69e26d50dc26?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHNob3BwaW5nfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="main-banner" />
+            </section>
+            <section className='px-2 grid grid-cols-4 grid-rows-[repeat(20,500px)] gap-2 h-full'>
+                {products.map(product => (
+                    <Product key={product.id} product={product}></Product>
+                ))}
             </section>
         </main>
     )

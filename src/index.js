@@ -45,11 +45,10 @@ const router = createBrowserRouter([
 ])
 
 const firebaseApp = app;
-console.log(firebaseApp);
 
 root.render(
   <QueryClientProvider client={queryClient}>
-    <div className='w-[80rem] h-screen bg-slate-500'>
+    <div className='w-[80rem] h-screen'>
       <RouterProvider router={router}></RouterProvider>
     </div>
     <ReactQueryDevtools initialIsOpen={true} />

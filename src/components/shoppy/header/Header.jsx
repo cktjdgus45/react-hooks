@@ -30,24 +30,24 @@ const Header = () => {
     return (
         <header className='w-full items-center h-[50px] flex justify-between'>
             <section className='flex items-center p-1' onClick={() => navigate('/')}>
-                <GiClothes className='cursor-pointer text-rose-400 text-3xl' />
-                <h3 className='text-rose-400 ml-3 cursor-pointer text-lg'>Shoppy</h3>
+                <GiClothes className='cursor-pointer text-cyan-700 text-2xl' />
+                <h3 className='text-cyan-700 ml-3 cursor-pointer text-2xl'>Shoppy</h3>
             </section>
             <section>
                 <nav className='flex items-center p-1'>
-                    <h3 onClick={() => navigate('products')} className='ml-3 cursor-pointer'>Products</h3>
-                    <AiOutlineShoppingCart onClick={() => navigate('carts')} className='ml-3 cursor-pointer text-xl' />
+                    <h3 onClick={() => navigate('products')} className='text-cyan-700 ml-3 cursor-pointer'>Products</h3>
+                    <AiOutlineShoppingCart onClick={() => navigate('carts')} className='text-cyan-700 ml-3 cursor-pointer text-xl' />
                     {uid && (
                         <>
-                            <BsFillPencilFill onClick={() => navigate('admin')} className='ml-3 cursor-pointer text-xl' />
-                            <img alt="profile" src={photoURL} className='w-[25px] h-[25px] rounded-full bg-rose-400 ml-3 cursor-pointer'></img>
+                            <BsFillPencilFill onClick={() => navigate('admin')} className='text-cyan-700 ml-3 cursor-pointer text-xl' />
+                            <img alt="profile" src={photoURL} className='w-[25px] h-[25px] rounded-full bg-orange-500 ml-3 cursor-pointer'></img>
                             <h3>{displayName}</h3>
                         </>
                     )}
                     {uid ?
-                        <button onClick={handleLogout} className='bg-rose-400 p-2  ml-3 text-white'>Logout</button>
+                        <button onClick={handleLogout} className='bg-cyan-700 p-2  ml-3 text-white'>Logout</button>
                         :
-                        <button onClick={handleLogin} className='bg-rose-400 p-2  ml-3 text-white'>Login</button>
+                        <button onClick={handleLogin} className='bg-cyan-700 p-2  ml-3 text-white'>Login</button>
                     }
                 </nav>
             </section>
