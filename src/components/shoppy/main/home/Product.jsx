@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Product = ({ product }) => {
     const { category,
@@ -7,8 +8,13 @@ const Product = ({ product }) => {
         price,
         size,
         url, id } = product;
+    let navigate = useNavigate();
     return (
-        <div className='flex flex-col shadow-lg rounded-md hover:scale-105 cursor-pointer transition ease-in-out duration-300'>
+        <div onClick={() => navigate(`/product/${id}`, {
+            state: {
+                product
+            }
+        })} className='flex flex-col shadow-lg rounded-md hover:scale-105 cursor-pointer transition ease-in-out duration-300'>
             <img className='basis-11/12 rounded-md' src={url} alt={description} />
             <div className='basis-1/12 p-2 flex-col justify-center'>
                 <div className='flex justify-between text-sm'>
