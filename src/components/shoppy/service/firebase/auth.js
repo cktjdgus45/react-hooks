@@ -1,4 +1,4 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from 'firebase/auth';
+import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from 'firebase/auth';
 
 class Auth {
     #auth = getAuth();
@@ -41,6 +41,17 @@ class Auth {
         }).catch((error) => {
             // An error happened.
             console.log(error);
+        });
+    }
+    whatAuthState(updater) {
+        onAuthStateChanged(this.#auth, (user) => {
+            if (user) {
+                // User is signed in, see docs for a list of available properties
+                // console.log(user); 이게 제일 정확.
+                updater(user);
+            } else {
+                console.log('User is signed out')
+            }
         });
     }
 }

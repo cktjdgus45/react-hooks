@@ -13,12 +13,7 @@ const Header = () => {
     const [photoURL, setPhotoURL] = useState();
     const [uid, setUid] = useState();
     useEffect(() => {
-        if (Object.keys(user).length !== 0) {
-            const { user: { displayName, photoURL, uid } } = user;
-            setDisplayName(displayName);
-            setPhotoURL(photoURL);
-            setUid(uid);
-        }
+        console.log(user);
     }, [user]);
     let navigate = useNavigate();
     const handleLogin = () => {
@@ -27,6 +22,9 @@ const Header = () => {
     const handleLogout = () => {
         new Auth().logout(setUser);
     }
+    useEffect(() => {
+        new Auth().whatAuthState(setUser);
+    }, [setUser, user]);
     return (
         <header className='w-full items-center h-[50px] flex justify-between'>
             <section className='flex items-center p-1' onClick={() => navigate('/')}>
