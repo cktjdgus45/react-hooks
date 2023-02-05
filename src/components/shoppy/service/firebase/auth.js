@@ -3,54 +3,23 @@ import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChang
 class Auth {
     #auth = getAuth();
     #provider = new GoogleAuthProvider();
-    login(updater) {
+    login(setUser) {
         signInWithPopup(this.#auth, this.#provider)
-            .then((result) => {
-                // This gives you a Google Access Token. You can use it to access the Google API.
-                // The signed-in user info.
-                const user = result.user;
-                updater(prev => {
-                    return {
-                        ...prev,
-                        user,
-                    }
-                });
-            }).catch((error) => {
-                // Handle Errors here.
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // The AuthCredential type that was used.
-                const credential = GoogleAuthProvider.credentialFromError(error);
-                console.log(errorCode,
-                    errorMessage,
-                    credential)
-                // ...
+            .then(() => this.whatAuthState(setUser)).catch((error) => {
+                console.log(error);
             });
     }
-    logout(updater) {
-        signOut(this.#auth).then(() => {
-            // Sign-out successful.
-            updater({
-                user: {
-                    displayName: "",
-                    photoURL: "",
-                    uid: ''
-                }
-            });
-            console.log('signout successful')
-        }).catch((error) => {
-            // An error happened.
+    logout(setUser) {
+        signOut(this.#auth).then(() => this.whatAuthState(setUser)).catch((error) => {
             console.log(error);
         });
     }
     whatAuthState(updater) {
         onAuthStateChanged(this.#auth, (user) => {
             if (user) {
-                // User is signed in, see docs for a list of available properties
-                // console.log(user); 이게 제일 정확.
                 updater(user);
             } else {
-                console.log('User is signed out')
+                updater(user);
             }
         });
     }

@@ -9,9 +9,6 @@ import { useEffect } from 'react';
 
 const Header = () => {
     const { user, setUser } = useContext(UserContext);
-    const [displayName, setDisplayName] = useState();
-    const [photoURL, setPhotoURL] = useState();
-    const [uid, setUid] = useState();
     useEffect(() => {
         console.log(user);
     }, [user]);
@@ -22,9 +19,7 @@ const Header = () => {
     const handleLogout = () => {
         new Auth().logout(setUser);
     }
-    useEffect(() => {
-        new Auth().whatAuthState(setUser);
-    }, [setUser, user]);
+
     return (
         <header className='w-full items-center h-[50px] flex justify-between'>
             <section className='flex items-center p-1' onClick={() => navigate('/')}>
@@ -35,14 +30,14 @@ const Header = () => {
                 <nav className='flex items-center p-1'>
                     <h3 onClick={() => navigate('products')} className='text-cyan-700 ml-3 cursor-pointer'>Products</h3>
                     <AiOutlineShoppingCart onClick={() => navigate('carts')} className='text-cyan-700 ml-3 cursor-pointer text-xl' />
-                    {uid && (
+                    {user && (
                         <>
                             <BsFillPencilFill onClick={() => navigate('admin')} className='text-cyan-700 ml-3 cursor-pointer text-xl' />
-                            <img alt="profile" src={photoURL} className='w-[25px] h-[25px] rounded-full bg-orange-500 ml-3 cursor-pointer'></img>
-                            <h3>{displayName}</h3>
+                            <img alt="profile" src={user.photoURL} className='w-[25px] h-[25px] rounded-full bg-orange-500 ml-3 cursor-pointer'></img>
+                            <h3>{user.displayName}</h3>
                         </>
                     )}
-                    {uid ?
+                    {user ?
                         <button onClick={handleLogout} className='bg-cyan-700 p-2  ml-3 text-white'>Logout</button>
                         :
                         <button onClick={handleLogin} className='bg-cyan-700 p-2  ml-3 text-white'>Login</button>
