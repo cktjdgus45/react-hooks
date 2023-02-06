@@ -23,6 +23,12 @@ class Auth {
             }
         });
     }
+    checkExipreState(updater, user) {
+        const expirationTime = user ? user.stsTokenManager.expirationTime : "";
+        const currentTime = new Date();
+        const expireTime = new Date(expirationTime);
+        updater(currentTime > expireTime);
+    }
 }
 
 export default Auth;

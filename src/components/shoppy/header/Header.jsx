@@ -9,11 +9,17 @@ import { useEffect } from 'react';
 
 const Header = () => {
     const { user, setUser } = useContext(UserContext);
+    const { isExipred, setIsExipred } = useContext(UserContext);
 
     useEffect(() => {
         console.log(user);
+        console.log(isExipred);
         new Auth().watchAuthState(setUser);
-    }, [user, setUser]);
+        new Auth().checkExipreState(setIsExipred, user);
+        if (isExipred) {
+            new Auth().logout();
+        }
+    }, [user, isExipred, setUser, setIsExipred]);
 
     let navigate = useNavigate();
     const handleLogin = () => {
