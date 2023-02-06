@@ -9,9 +9,12 @@ import { useEffect } from 'react';
 
 const Header = () => {
     const { user, setUser } = useContext(UserContext);
+
     useEffect(() => {
         console.log(user);
-    }, [user]);
+        new Auth().watchAuthState(setUser);
+    }, [user, setUser]);
+
     let navigate = useNavigate();
     const handleLogin = () => {
         new Auth().login(setUser);
@@ -33,7 +36,7 @@ const Header = () => {
                     {user && (
                         <>
                             <BsFillPencilFill onClick={() => navigate('admin')} className='text-cyan-700 ml-3 cursor-pointer text-xl' />
-                            <img alt="profile" src={user.photoURL} className='w-[25px] h-[25px] rounded-full bg-orange-500 ml-3 cursor-pointer'></img>
+                            <img alt="profile" src={user.photoURL} className='w-[25px] h-[25px] rounded-full ml-3 cursor-pointer'></img>
                             <h3>{user.displayName}</h3>
                         </>
                     )}

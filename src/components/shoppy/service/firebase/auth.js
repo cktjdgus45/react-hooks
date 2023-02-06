@@ -5,16 +5,16 @@ class Auth {
     #provider = new GoogleAuthProvider();
     login(setUser) {
         signInWithPopup(this.#auth, this.#provider)
-            .then(() => this.whatAuthState(setUser)).catch((error) => {
+            .then(() => this.watchAuthState(setUser)).catch((error) => {
                 console.log(error);
             });
     }
     logout(setUser) {
-        signOut(this.#auth).then(() => this.whatAuthState(setUser)).catch((error) => {
+        signOut(this.#auth).then(() => this.watchAuthState(setUser)).catch((error) => {
             console.log(error);
         });
     }
-    whatAuthState(updater) {
+    watchAuthState(updater) {
         onAuthStateChanged(this.#auth, (user) => {
             if (user) {
                 updater(user);
