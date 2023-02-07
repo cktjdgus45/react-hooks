@@ -12,8 +12,6 @@ const Header = () => {
     const { isExipred, setIsExipred } = useContext(UserContext);
 
     useEffect(() => {
-        console.log(user);
-        console.log(isExipred);
         new Auth().watchAuthState(setUser);
         new Auth().checkExipreState(setIsExipred, user);
         if (isExipred) {

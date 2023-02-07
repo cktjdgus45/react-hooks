@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { UserContext } from '../../../../context/UserContext';
+import DB from '../../service/firebase/database';
 
 const ProductDetail = () => {
     const location = useLocation();
@@ -10,17 +12,30 @@ const ProductDetail = () => {
         price,
         size,
         url, id } } = state;
-    console.log(category,
-        description,
-        name,
-        price,
-        size,
-        url, id);
     const sizes = size.split(',');
+    const { user } = useContext(UserContext)
+    const [selectSize, setSelectSize] = useState(sizes[0]);
+
     const addToCart = () => {
+        const product = {
+            category,
+            description,
+            name,
+            price,
+            size: selectSize,
+            url,
+            id
+        }
         //user의 cart field 에 추가.
+        const db = new DB();
+        // db.readCart(user, db);
+        db.createAdmin(user, product, db);
+        //장바구니 에 실제로 추가.
+        //장바구니 뱃지 개수 증가.
     }
-    console.log(sizes);
+    const getSize = (e) => {
+        setSelectSize(e.target.value);
+    }
     return (
         <main className='w-full h-full border-0 border-t-[1px] border-gray-400 px-8'>
             <div className='w-full p-2'>
@@ -37,7 +52,7 @@ const ProductDetail = () => {
                     <span className='text-sm text-gray-500 mb-4'>{description}</span>
                     <div className='flex min-w-full mb-4 items-center'>
                         <label className='text-sm font-bold text-cyan-700 basis-1/12' htmlFor="size">옵션: </label>
-                        <select className='focus:outline-none border-cyan-700 border-[2px] border-dotted basis-11/12' name="size" id="size">
+                        <select onChange={getSize} className='focus:outline-none border-cyan-700 border-[2px] border-dotted basis-11/12' name="size" id="size">
                             {sizes.map(size => (
                                 <option key={size} name="size" value={size}>{size}</option>
                             ))}

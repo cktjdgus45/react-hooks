@@ -3,9 +3,41 @@ import app from './firebase';
 
 export default class DB {
     #db = getDatabase(app);
+    #cart = [];
     create(product) {
         set(ref(this.#db, 'products/' + product.id), { ...product });
     }
+    createAdmin(user, product, db) {
+        db.readCart(user, db);
+        const cartFromDB = db.cart;
+        const existCart = cartFromDB.find(item => item.id === product.id);
+        if (existCart) { existCart['size'] = product.size; }
+        const cartArr = existCart ? [...cartFromDB] : [...cartFromDB, product];
+        const { displayName, email, photoURL, uid } = user;
+        const postData = {
+            displayName, email, photoURL, uid,
+            cart: cartArr
+        }
+        set(ref(this.#db, 'admin/' + user.uid), { ...postData });
+    }
+
+
+    set cart(AdminFromDB) {
+        const cartFromAdmin = AdminFromDB[0];
+        this.#cart = [...cartFromAdmin];
+    }
+    get cart() {
+        return this.#cart;
+    }
+    readCart(user, db) {
+        const AdminRef = ref(this.#db, 'admin/' + user.uid);
+        console.log(db);
+        onValue(AdminRef, (snapshot) => {
+            const AdminFromDB = Object.values(snapshot.val());
+            db.cart = AdminFromDB;
+        });
+    }
+
     read(updater) {
         const productRef = ref(this.#db, 'products/');
         onValue(productRef, (snapshot) => {
@@ -13,6 +45,7 @@ export default class DB {
             updater(productsFromDB);
         });
     }
+
     update(product) {
         const postData = {
             ...product
