@@ -29,11 +29,11 @@ export default class DB {
     get cart() {
         return this.#cart;
     }
-    readCart(user, db) {
+    readCart(user, db, updater) {
         const AdminRef = ref(this.#db, 'admin/' + user.uid);
-        console.log(db);
         onValue(AdminRef, (snapshot) => {
             const AdminFromDB = Object.values(snapshot.val());
+            updater && updater(AdminFromDB[0].length);
             db.cart = AdminFromDB;
         });
     }

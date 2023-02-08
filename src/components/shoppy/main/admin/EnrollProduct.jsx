@@ -12,9 +12,7 @@ const EnrollProduct = () => {
     watch
   } = useForm();
   const onSubmit = async (data) => {
-    //fetch cloudinary upload api.
     const url = await new Cloudinary().uploadImage(data.file);
-    //firebase DB 추가.
     const product = { ...data, url, id: uuidv4() };
     new DB().create(product);
   };
@@ -61,7 +59,7 @@ const EnrollProduct = () => {
           className="w-full border-solid border-2 border-slate-300 p-2 mb-4"
           placeholder="제품설명"
           type="text"
-          {...register("description", { maxLength: 20, required: true })}
+          {...register("description", { maxLength: 100, required: true })}
         />
         <input
           className="w-full border-solid border-2 border-slate-300 p-2 mb-4"
