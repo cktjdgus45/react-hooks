@@ -33,7 +33,9 @@ export default class DB {
         const AdminRef = ref(this.#db, 'admin/' + user.uid);
         onValue(AdminRef, (snapshot) => {
             const AdminFromDB = Object.values(snapshot.val());
-            updater && updater(AdminFromDB[0].length);
+            console.log(AdminFromDB[0])
+            // updater && updater(AdminFromDB[0].length);
+            updater && updater(AdminFromDB[0]);
             db.cart = AdminFromDB;
         });
     }

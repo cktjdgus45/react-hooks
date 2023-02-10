@@ -46,8 +46,8 @@ const EnrollProduct = () => {
         <input
           className="w-full border-solid border-2 border-slate-300 p-2 mb-4"
           placeholder="가격"
-          type="text"
-          {...register("price", { required: true })}
+          type="number"
+          {...register("price", { required: true, min: 0, max: 4000000 })}
         />
         <input
           className="w-full border-solid border-2 border-slate-300 p-2 mb-4"

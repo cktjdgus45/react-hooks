@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, } from 'react';
+import React, { useContext, useEffect, } from 'react';
 import { GiClothes } from 'react-icons/gi';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { BsFillPencilFill } from 'react-icons/bs';
@@ -10,16 +10,13 @@ import DB from '../service/firebase/database';
 const Header = () => {
     const { user, setUser } = useContext(UserContext);
     const { isExipred, setIsExipred } = useContext(UserContext);
-    const [cartCount, setCartCount] = useState();
+    const { cart, setCart } = useContext(UserContext);
     useEffect(() => {
         if (user) {
             const db = new DB();
-            db.readCart(user, db, setCartCount);
+            db.readCart(user, db, setCart);
         }
-        //TODO -COUNT 표시할려면 ,
-        //맨첨에 DB에서 읽어오기; ADMIN USER의 CART ARRAY에 대해.
-        //읽어와서 .SETCOUNT.
-    }, [setCartCount, user])
+    }, [setCart, user])
 
     useEffect(() => {
         new Auth().watchAuthState(setUser);
@@ -36,7 +33,6 @@ const Header = () => {
     const handleLogout = () => {
         new Auth().logout(setUser);
     }
-
     return (
         <header className='w-full items-center h-[50px] flex justify-between'>
             <section className='flex items-center p-1' onClick={() => navigate('/')}>
@@ -46,10 +42,14 @@ const Header = () => {
             <section>
                 <nav className='flex items-center p-1'>
                     <h3 onClick={() => navigate('products')} className='text-cyan-700 ml-3 cursor-pointer'>Products</h3>
-                    <div className='relative cursor-pointer' onClick={() => navigate('carts')}>
+                    <div className='relative cursor-pointer' onClick={() => navigate('carts', {
+                        state: {
+                            cart
+                        }
+                    })}>
                         <AiOutlineShoppingCart className='relative text-cyan-700 ml-3 text-[30px]' />
                         <div className='absolute right-[-2px] top-0 flex items-center justify-center w-3 h-3 bg-cyan-700 rounded-[50%] p-2'>
-                            <span className='text-white text-[7px]'>{cartCount}</span>
+                            <span className='text-white text-[7px]'>{cart && cart.length}</span>
                         </div>
                     </div>
                     {user && (
